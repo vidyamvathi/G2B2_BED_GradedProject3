@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Ticket Tracker</title>
+
+	<style>
+		header {
+			background-color: #0002A1;
+			padding: 10px;
+			color: white;
+			margin: 0px;
+		}
+
+		header nav ul {
+			list-style: none;
+			padding: 0;
+			margin: 0;
+		}
+
+		header nav ul li {
+			display: inline;
+			margin-right: 10px;
+		}
+
+		header nav ul li a {
+			color: white;
+			text-decoration: none;
+		}
+
+		table {
+			border-collapse: collapse;
+			width: 100%;
+		}
+
+		table,
+		th,
+		td {
+			border: 1px solid #DDE6ED;
+		}
+
+		thead {
+			background-color: #16213E;
+			color: white;
+
+		}
+	</style>
+
+</head>
+
+<body>
+
+	<header>
+		<nav>
+			<ul>
+				<li>Ticket Tracker Application</li>
+				<li><a th:href="@{/admin/tickets}">Home</a></li>
+				<li><a th:href="@{/admin/tickets/create}">New Ticket</a></li>
+			</ul>
+		</nav>
+	</header>
+
+	<h3>List of Tickets</h3>
+
+
+	</a>
+
+	<!-- Search Bar -->
+	<form th:action="@{/admin/tickets/search}" method="get">
+		<input type="text" name="keyword" placeholder="Search">
+		<button type="submit" style="background-color: #0002A1; color: white;">Search</button>
+	</form>
+
+	<!-- Ticket Table -->
+	<table>
+		<thead>
+			<tr>
+				<th>Number</th>
+				<th>Ticket Title</th>
+				<th>Ticket Short Description</th>
+				<th>Ticket Created on</th>
+				<th>Actions</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="ticket, ticketIndex : ${tickets}">
+				<td th:text="${ticketIndex.index + 1}"></td>
+				<td th:text="${ticket.title}"></td>
+				<td th:text="${ticket.shortDescription}"></td>
+				<td th:text="${#temporals.format(ticket.createdOn, 'dd-MM-yyyy')}"></td>
+
+				<td>
+					<a th:href="@{/admin/tickets/edit/{id}(id=${ticket.id})}"
+						style="background-color: #0002A1; color: white; padding: 5px;">Edit</a>
+					<a th:href="@{/admin/tickets/delete/{id}(id=${ticket.id})}"
+						style="background-color: #D2001A; color: white; padding: 5px;">Delete</a>
+					<a th:href="@{/admin/tickets/view/{id}(id=${ticket.id})}"
+						style="background-color: #5F6F94; color: white; padding: 5px;">View</a>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</body>
+
+</html>

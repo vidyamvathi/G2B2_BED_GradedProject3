@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Search Results</title>
+
+	<style>
+		header {
+			background-color: blue;
+			padding: 10px;
+			color: white;
+		}
+
+		body {
+			margin: 0;
+			font-family: Arial, sans-serif;
+			background-color: #f1f1f1;
+		}
+
+		h3 {
+			background-color: blue;
+			color: white;
+			padding: 10px;
+			margin-top: 0;
+		}
+
+		table {
+			width: 100%;
+			background-color: white;
+			border-collapse: collapse;
+			margin: 20px;
+			border: 1px solid #ccc;
+		}
+
+		th,
+		td {
+			padding: 10px;
+			border: 1px solid #ccc;
+		}
+
+		a {
+			background-color: #4E4FEB;
+			color: white;
+			padding: 5px 10px;
+			text-decoration: none;
+			border-radius: 4px;
+		}
+	</style>
+
+</head>
+
+<body>
+
+	<div th:include="header :: header"></div>
+
+
+	<!-- Display search results -->
+	<table>
+		<thead>
+			<tr>
+				<th>Title</th>
+				<th>Short Description</th>
+				<th>Actions</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="ticket : ${searchResults}">
+				<td th:text="${ticket.title}"></td>
+				<td th:text="${ticket.shortDescription}"></td>
+				<td>
+					<a th:href="@{/admin/tickets/edit/{id}(id=${ticket.id})}">Edit</a>
+					<a th:href="@{/admin/tickets/delete/{id}(id=${ticket.id})}">Delete</a>
+					<a th:href="@{/admin/tickets/view/{id}(id=${ticket.id})}">View</a>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+
+</body>
+
+</html>

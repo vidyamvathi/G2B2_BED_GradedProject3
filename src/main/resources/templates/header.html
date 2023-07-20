@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Ticket Tracker</title>
+	<style>
+		header {
+			background-color: blue;
+			padding: 10px;
+			color: white;
+		}
+
+		header nav ul {
+			list-style: none;
+			padding: 0;
+			margin: 0;
+		}
+
+		header nav ul li {
+			display: inline;
+			margin-right: 10px;
+		}
+
+		header nav ul li a {
+			color: white;
+			text-decoration: none;
+		}
+	</style>
+</head>
+
+<body>
+	<header>
+		<nav>
+			<ul>
+				<li><a th:href="@{/admin/tickets}">Home</a></li>
+				<li><a th:href="@{/admin/tickets/create}">New Ticket</a></li>
+			</ul>
+		</nav>
+	</header>
+</body>
+
+</html>
